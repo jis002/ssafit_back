@@ -14,11 +14,11 @@ public class DBUtil {
      * serverTimezone=UTC 설정이 없으면 오류가 발생하므로 주의한다.
      */
 	// DB와 연결하기위해 필요한 DB의 URL
-	private final String url = "jdbc:mysql://localhost:3306/ssafy_board?serverTimezone=UTC";
+	private final String url = "jdbc:mysql://localhost:3306/ssafit_db?serverTimezone=UTC";
 	// DB의 USER 이름
 	private final String username = "root";
 	// 위 USER의 PASSWORD
-	private final String password = "ssafy";
+	private final String password = "1234";
 	// Mysql 드라이버 클래스 이름
 	private final String driverName = "com.mysql.cj.jdbc.Driver";
 
