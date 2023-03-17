@@ -19,6 +19,7 @@
 		</iframe>
 	</div>
 	<hr>
+	<a href="main?act=writeform&videoId=${video.id }"> <button type="button">리뷰 등록</button> </a>	
 	<table>
 		<tr>
 			<th>번호</th>

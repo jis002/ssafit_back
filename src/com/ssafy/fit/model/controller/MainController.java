@@ -63,6 +63,7 @@ public class MainController extends HttpServlet {
 		int videoId = Integer.parseInt(request.getParameter("videoId"));
 		
 		try {
+			mainDao.updateViewCnt(videoId);
 			request.setAttribute("video", mainDao.selectOne(videoId));
 			request.setAttribute("reviewList", reviewDao.selectAll(videoId));
 			request.getRequestDispatcher("/video/list.jsp").forward(request, response);
@@ -71,8 +72,8 @@ public class MainController extends HttpServlet {
 		}
 	}
 
-	private void doWriteForm(HttpServletRequest request, HttpServletResponse response) {
-		
+	private void doWriteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/review/writeform.jsp").forward(request, response);
 	}
 
 	private void doWrite(HttpServletRequest request, HttpServletResponse response) {

@@ -18,7 +18,7 @@
 		제목 : <input type="text" name="title" ><br>
 		쓰니 : <input type="text" name="writer" ><br>
 		내용 : <textarea rows="10" cols="10" name="content"></textarea><br><br>
-		<input type="submit" value="수정">
+		<input type="submit" value="등록">
 	</form>
 	
 </body>
