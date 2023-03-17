@@ -8,7 +8,18 @@ public class Video {
 	private String youtubeId;
 	private String channelName;
 	private int viewCnt;
+	private String img;
 	
+
+	public String getImg() {
+		return img;
+	}
+
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 
 	public Video() {
 		super();
@@ -38,8 +49,8 @@ public class Video {
 		return id;
 	}
 	
-	public int setId() {
-		return id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getTitle() {
@@ -85,6 +96,6 @@ public class Video {
 	@Override
 	public String toString() {
 		return "Video [it=" + id + ", title=" + title + ", fitPartName=" + fitPartName + ", youtubeId=" + youtubeId + ", channelName="
-				+ channelName + ", viewCnt=" + viewCnt + "]";
+				+ channelName + ", viewCnt=" + viewCnt + ", img=" + img + "]";
 	}
 }
