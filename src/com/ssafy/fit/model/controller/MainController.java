@@ -2,17 +2,16 @@ package com.ssafy.fit.model.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.ssafy.fit.model.dao.MainDao;
 import com.ssafy.fit.model.dao.MainDaoImpl;
 import com.ssafy.fit.model.dao.ReviewDao;
 import com.ssafy.fit.model.dao.ReviewDaoImpl;
+import com.ssafy.fit.model.dto.Review;
 
 @WebServlet("/main")
 public class MainController extends HttpServlet {
@@ -76,16 +75,35 @@ public class MainController extends HttpServlet {
 		request.getRequestDispatcher("/review/writeform.jsp").forward(request, response);
 	}
 
-	private void doWrite(HttpServletRequest request, HttpServletResponse response) {
+	private void doWrite(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Review review = new Review();
+		int videoId = Integer.parseInt(request.getParameter("videoId"));
+		review.setTitle(request.getParameter("title"));
+		review.setContent(request.getParameter("content"));
+		review.setWriter(request.getParameter("writer"));
+		review.setVideoId(videoId);
 		
+		try {
+			reviewDao.insertReview(review);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		response.sendRedirect("main?act=list&videoId=" + videoId);
 	}
 
-	private void doDetail(HttpServletRequest request, HttpServletResponse response) {
-		
+	private void doDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			request.setAttribute("review", reviewDao.selectOne(id));
+			request.getRequestDispatcher("/review/detail.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void doModifyForm(HttpServletRequest request, HttpServletResponse response) {
-		
+	private void doModifyForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/review/modifyform.jsp").forward(request, response);
 	}
 
 	private void doModify(HttpServletRequest request, HttpServletResponse response) {

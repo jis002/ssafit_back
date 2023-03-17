@@ -99,7 +99,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	// videoId도 넣어야 하는 건 아닌지?? 어떻게 넘겨 받을지?? 고민
 	@Override
 	public void insertReview(Review review) throws SQLException {
-		String sql = "INSERT INTO reviews (title, writer, content) VALUES (?, ?, ?);";
+		String sql = "INSERT INTO reviews (title, writer, content, videoId) VALUES (?, ?, ?, ?);";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -110,6 +110,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		pstmt.setString(1, review.getTitle());
 		pstmt.setString(2, review.getWriter());
 		pstmt.setString(3, review.getContent());
+		pstmt.setInt(4, review.getVideoId());
 		
 		pstmt.executeUpdate();
 		

@@ -15,6 +15,7 @@
 	
 	<form action="main" method="POST">
 		<input type="hidden" name="act" value="write">
+		영상 : <input type="number" name="videoId" readonly value="<%= request.getParameter("videoId") %>"><br>
 		제목 : <input type="text" name="title" ><br>
 		쓰니 : <input type="text" name="writer" ><br>
 		내용 : <textarea rows="10" cols="10" name="content"></textarea><br><br>
