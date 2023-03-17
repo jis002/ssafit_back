@@ -25,15 +25,22 @@ CREATE TABLE `reviews` (
   CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`videoId`) REFERENCES `videos` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/* 더미데이터
+
 INSERT INTO `videos` (title, fitPartName, youtubeId, channelName, viewCnt)
 VALUES 
-("가나다 영상제목", "파트너이름", "myNjmnvI6x0", "채널이름이야", 1);
+("가나다 영상제목", "파트너이름", "myNjmnvI6x0", "채널이름이야", 0),
+("멋지다 건이야~! 브라보!!!", "김지수", "gMaB-fG4u4g", "GOGOGUN", 0),
+("프로그래머 건이야!!", "고건", "5MACh6ylf8g", "채널이름이야", 0);
 
 INSERT INTO `reviews` (title, writer, content, videoId)
 VALUES
-("리뷰 제목입니다", "리뷰작성자이름", "리뷰 내용입니다 리뷰 내용입니다. 300자 제한이 있어요", 1);
-*/
+("리뷰 제목입니다", "리뷰작성자이름", "리뷰 내용입니다 리뷰 내용입니다. 300자 제한이 있어요", 1),
+("리뷰 1234", "김싸피", "리뷰 내용입니다 아주 멋집니다 그레잇이트", 1),
+("리뷰 1234567890", "김싸피", "리뷰 내용입니다 아주 멋집니다 그레잇이트", 1),
+("리뷰 화이팅", "김싸피", "리뷰 내용입니다 아주 멋집니다 그레잇이트", 1),
+("리뷰 멋지다! BRAVO!!", "짓", "고건은 천재적인 프로그래머 입니다.", 2),
+("Perpecto~!! BRAVO!!", "김지수", "고건은 천재적인 프로그래머 입니다.", 2),
+("아하하하하하", "익명", "리뷰 내용입니다 리뷰 내용입니다. 300자 제한이 있어요", 3);
 
 
 SELECT * FROM videos;
