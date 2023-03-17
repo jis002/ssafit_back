@@ -103,7 +103,13 @@ public class MainController extends HttpServlet {
 	}
 
 	private void doModifyForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/review/modifyform.jsp").forward(request, response);
+		int id = Integer.parseInt(request.getParameter("reviewId"));
+		try {
+			request.setAttribute("review", reviewDao.selectOne(id));
+			request.getRequestDispatcher("/review/modifyform.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void doModify(HttpServletRequest request, HttpServletResponse response) {

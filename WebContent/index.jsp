@@ -55,6 +55,6 @@
 	
 </body>
 <script>
-    document.querySelector("#getListInfo").click();
+/*     document.querySelector("#getListInfo").click(); */
 </script>
 </html>
