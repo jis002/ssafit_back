@@ -36,19 +36,21 @@
 		</table>
 		</c:if>
 		
+		<!--  
 		<form action="main">
         <input type="hidden" name="act" value="mainList">
         <input id="getListInfo" type="submit" value="제출"></input>
     	</form>
+    	-->
 		
 		<div>
-			<a href="main?act=list&videoId=1">영상 게시판 가기</a>
+			<a href="main?act=list&videoId=1"><img width="360" src="https://i.ytimg.com/vi/myNjmnvI6x0/hq720.jpg"></a>
 		</div>
 		<div>
-			<a href="main?act=list&videoId=2">영상 게시판 가기</a>
+			<a href="main?act=list&videoId=2"><img width="360" src="https://i.ytimg.com/vi/gMaB-fG4u4g/hq720.jpg"></a>
 		</div>
 		<div>
-			<a href="main?act=list&videoId=3">영상 게시판 가기</a>
+			<a href="main?act=list&videoId=3"><img width="360" src="https://i.ytimg.com/vi/5MACh6ylf8g/hq720.jpg"></a>
 		</div>
 		
 	</div>
