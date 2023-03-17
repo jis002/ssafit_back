@@ -98,7 +98,7 @@ public class MainDaoImpl implements MainDao {
 	@Override
 	public void updateViewCnt(int id) throws SQLException {
 
-		String sql = "UPDATE video SET viewCnt = viewCnt+1 WHERE id=?";
+		String sql = "UPDATE videos SET viewCnt = viewCnt+1 WHERE id=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
