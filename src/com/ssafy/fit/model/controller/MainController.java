@@ -117,6 +117,12 @@ public class MainController extends HttpServlet {
 	}
 
 	private void doRemove(HttpServletRequest request, HttpServletResponse response) {
-		
+	    int id = Integer.parseInt(request.getParameter("id"));
+	    try {
+	        reviewDao.deleteReview(id);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
 	}
 }
