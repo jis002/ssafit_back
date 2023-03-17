@@ -112,8 +112,20 @@ public class MainController extends HttpServlet {
 		}
 	}
 
-	private void doModify(HttpServletRequest request, HttpServletResponse response) {
+	private void doModify(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Review review = new Review();
+		int videoId = Integer.parseInt(request.getParameter("videoId"));
+		review.setId(Integer.parseInt(request.getParameter("id")));
+		review.setTitle(request.getParameter("title"));
+		review.setContent(request.getParameter("content"));
 		
+		try {
+			reviewDao.updateReview(review);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		response.sendRedirect("main?act=list&videoId=" + videoId);
 	}
 
 	private void doRemove(HttpServletRequest request, HttpServletResponse response) throws IOException {

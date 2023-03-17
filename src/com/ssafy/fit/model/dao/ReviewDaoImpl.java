@@ -82,8 +82,8 @@ public class ReviewDaoImpl implements ReviewDao {
 			
 			while (rs.next()) {
 				review.setId(rs.getInt(1));
-				review.setWriter(rs.getString(2));
-				review.setTitle(rs.getString(3));
+				review.setTitle(rs.getString(2));
+				review.setWriter(rs.getString(3));
 				review.setContent(rs.getString(4));
 				review.setRegDate(rs.getString(5));
 				review.setVideoId(rs.getInt(6));

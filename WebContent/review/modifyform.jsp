@@ -16,8 +16,10 @@
 	<!-- 수정할 리뷰의 제목, 작성자  -->
 	<form action="main" method="POST">
 		<input type="hidden" name="act" value="modify">
+		<Input type="hidden" name="id" value="${review.id }">
+		<Input type="hidden" name="videoId" value="${review.videoId }">
 		제목 : <input type="text" name="title" value=${review.title }><br>
-		쓰니 : <input type="text" name="writer" disabled value=${review.writer }><br>
+		쓰니 : <input type="text" name="writer" readonly value=${review.writer }><br>
 		내용 : <textarea rows="10" cols="10" name="content">${review.content }</textarea><br> 
 		<input type="submit" value="수정">
 	</form>
