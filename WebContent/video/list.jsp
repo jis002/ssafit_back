@@ -24,19 +24,17 @@
 			<th>번호</th>
 			<th>제목</th>
 			<th>글쓴이</th>
-			<th>조회수</th>
 			<th>등록일</th>
 		</tr>
 		<c:forEach items="${requestScope.reviewList }" var="review">
 			<tr>
 				<td>${review.id }</td>
 				<td>
-					<a href="board?act=detail&id=${review.id }">
+					<a href="main?act=detail&id=${review.id }">
 						${review.title }
 					</a>
 				</td>
 				<td>${review.writer }</td>
-				<td>${review.viewCnt }</td>
 				<td>${review.regDate }</td>
 			</tr>
 		</c:forEach>

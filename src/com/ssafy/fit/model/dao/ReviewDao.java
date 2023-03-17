@@ -2,11 +2,12 @@ package com.ssafy.fit.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import com.ssafy.fit.model.dto.Review;
 
 public interface ReviewDao {
 	
 	// 모든 리뷰 가져오기
-	public List<Review> selectAll();
+	public List<Review> selectAll(int videoId);
 	
 	// ID에 해당하는 리뷰 하나 가져오기
 	public Review selectOne(int id) throws SQLException;
@@ -19,7 +20,4 @@ public interface ReviewDao {
 	
 	// 리뷰 수정
 	public void updateReview(Review review) throws SQLException;
-	
-	// 조회수 증가
-	public void updateViewCnt(int id) throws SQLException;
 }

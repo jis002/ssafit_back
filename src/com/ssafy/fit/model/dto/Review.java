@@ -7,7 +7,7 @@ public class Review {
 	private String writer;
 	private String content;
 	private String regDate;
-	private String videoId;
+	private int videoId;
 
 	public Review() {}
 
@@ -17,7 +17,7 @@ public class Review {
 		this.content = content;
 	}
 	
-	public Review(int id, String title, String writer, String content, String regDate, String videoId) {
+	public Review(int id, String title, String writer, String content, String regDate, int videoId) {
 		this.id = id;
 		this.title = title;
 		this.writer = writer;
@@ -66,11 +66,11 @@ public class Review {
 		this.regDate = regDate;
 	}
 
-	public String getVideoId() {
+	public int getVideoId() {
 		return videoId;
 	}
 
-	public void setVideoId(String videoId) {
+	public void setVideoId(int videoId) {
 		this.videoId = videoId;
 	}
 

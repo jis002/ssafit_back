@@ -9,10 +9,10 @@ import java.sql.SQLException;
  */
 public class DBUtil {
 	/**
-     * DB 접속에 필요한 url을 작성한다.
-     * url은 jdbc:mysql://[host][:port]/[database][?propertyName1][=propertyValue1]형태로 작성한다.
-     * serverTimezone=UTC 설정이 없으면 오류가 발생하므로 주의한다.
-     */
+    * DB 접속에 필요한 url을 작성한다.
+    * url은 jdbc:mysql://[host][:port]/[database][?propertyName1][=propertyValue1]형태로 작성한다.
+    * serverTimezone=UTC 설정이 없으면 오류가 발생하므로 주의한다.
+    */
 	// DB와 연결하기위해 필요한 DB의 URL
 	private final String url = "jdbc:mysql://localhost:3306/ssafit_db?serverTimezone=UTC";
 	// DB의 USER 이름
