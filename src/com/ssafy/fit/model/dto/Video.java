@@ -2,6 +2,7 @@ package com.ssafy.fit.model.dto;
 
 public class Video {
 	
+	private int id;
 	private String title;
 	private String fitPartName;
 	private String youtubeId;
@@ -13,6 +14,7 @@ public class Video {
 		super();
 	}
 	
+	
 	public Video(String title, String fitPartName, String youtubeId, String channelName, int viewCnt) {
 		this.title = title;
 		this.fitPartName = fitPartName;
@@ -21,6 +23,25 @@ public class Video {
 		this.viewCnt = viewCnt;
 	}
 
+
+
+	public Video(int id, String title, String fitPartName, String youtubeId, String channelName, int viewCnt) {
+		this.id = id;
+		this.title = title;
+		this.fitPartName = fitPartName;
+		this.youtubeId = youtubeId;
+		this.channelName = channelName;
+		this.viewCnt = viewCnt;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public int setId() {
+		return id;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -63,7 +84,7 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video [title=" + title + ", fitPartName=" + fitPartName + ", youtubeId=" + youtubeId + ", channelName="
+		return "Video [it=" + id + ", title=" + title + ", fitPartName=" + fitPartName + ", youtubeId=" + youtubeId + ", channelName="
 				+ channelName + ", viewCnt=" + viewCnt + "]";
 	}
 }
