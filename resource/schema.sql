@@ -11,7 +11,7 @@ CREATE TABLE `videos` (
   `youtubeId` varchar(40) NOT NULL,
   `channelName` varchar(40) NOT NULL,
   `viewCnt` int NOT NULL,
-  `img` varchar(40) DEFAULT NULL
+  `img` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS reviews;
@@ -20,17 +20,17 @@ CREATE TABLE `reviews` (
   `title` varchar(40) NOT NULL,
   `writer` varchar(40) NOT NULL,
   `content` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `createTime` TIMESTAMP DEFAULT now(),
+  `regDate` TIMESTAMP DEFAULT now(),
   `videoId` int(10) NOT NULL,
   CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`videoId`) REFERENCES `videos` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-INSERT INTO `videos` (title, fitPartName, youtubeId, channelName, viewCnt)
+INSERT INTO `videos` (title, fitPartName, youtubeId, channelName, viewCnt, img)
 VALUES 
-("가나다 영상제목", "파트너이름", "myNjmnvI6x0", "채널이름이야", 0),
-("멋지다 건이야~! 브라보!!!", "김지수", "gMaB-fG4u4g", "GOGOGUN", 0),
-("프로그래머 건이야!!", "고건", "5MACh6ylf8g", "채널이름이야", 0);
+("가나다 영상제목", "하체", "myNjmnvI6x0", "채널이름이야", 0, "myNjmnvI6x0/hq720.jpg"),
+("멋지다 건이야~! 브라보!!!", "상체", "gMaB-fG4u4g", "GOGOGUN", 0, "gMaB-fG4u4g/hq720.jpg"),
+("프로그래머 건이야!!", "하체", "5MACh6ylf8g", "김지수", 0, "5MACh6ylf8g/hq720.jpg");
 
 INSERT INTO `reviews` (title, writer, content, videoId)
 VALUES

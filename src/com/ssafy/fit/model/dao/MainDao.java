@@ -10,6 +10,12 @@ public interface MainDao {
 	// 모든 영상 가져오기
 	public List<Video> selectAll();
 	
+	// 인기 영상 3개 가져오기
+	public List<Video> selectRecent();
+	
+	// 부위별 영상 3개 가져오기
+	public List<Video> selectCategory(String fitPartName);
+	
 	// ID에 해당하는 영상 하나 가져오기
 	public Video selectOne(int id) throws SQLException;
 	

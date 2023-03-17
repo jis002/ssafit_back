@@ -2,6 +2,8 @@ package com.ssafy.fit.model.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,7 @@ import com.ssafy.fit.model.dao.MainDao;
 import com.ssafy.fit.model.dao.MainDaoImpl;
 import com.ssafy.fit.model.dao.ReviewDao;
 import com.ssafy.fit.model.dao.ReviewDaoImpl;
+import com.ssafy.fit.model.dto.Video;
 
 @WebServlet("/main")
 public class MainController extends HttpServlet {
@@ -53,9 +56,18 @@ public class MainController extends HttpServlet {
 	    	case "remove":
 	    		doRemove(request, response);
 	    		break;
+	    	case "mainList":
+	    		doMain(request, response);
+	    		break;
 	    	default:
 	    		break;
     	}
+	}
+
+	private void doMain(HttpServletRequest request, HttpServletResponse response) {
+		
+		mainDao.selectAll();
+		
 	}
 
 	private void doList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -93,6 +105,7 @@ public class MainController extends HttpServlet {
 	}
 
 	private void doRemove(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 	}
 }

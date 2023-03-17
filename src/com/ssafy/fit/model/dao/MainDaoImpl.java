@@ -1,114 +1,116 @@
-package com.ssafy.fit.model.dao;
+package com.ssafy.fit.model.controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import com.ssafy.fit.model.dao.MainDao;
+import com.ssafy.fit.model.dao.MainDaoImpl;
+import com.ssafy.fit.model.dao.ReviewDao;
+import com.ssafy.fit.model.dao.ReviewDaoImpl;
+import com.ssafy.fit.model.dto.Review;
 
-import com.ssafy.fit.model.dto.Video;
-import com.ssafy.fit.util.DBUtil;
+@WebServlet("/main")
+public class MainController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private MainDao mainDao = MainDaoImpl.getInstance();
+	private ReviewDao reviewDao = ReviewDaoImpl.getInstance();
 
-public class MainDaoImpl implements MainDao {
-
-	// DBUtil 가져와야함.
-	private final DBUtil util = DBUtil.getInstance();
-	
-	// 싱글턴 만들기
-	private static MainDaoImpl instance = new MainDaoImpl();
-	
-	private MainDaoImpl() {
-	};
-	
-	public static MainDaoImpl getInstance() {
-		return instance;
-	}
-	
-	
 	@Override
-	public List<Video> selectAll() {
-		List<Video> list = new ArrayList<Video>();
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		// GET 요청에서는 하지 않아도 되지만, POST 요청에서는 인코딩 변경
+    	if (request.getMethod().equals("POST")) {
+    		request.setCharacterEncoding("UTF-8");
+    	}
+    	
+    	// FrontController 패턴
+    	String act = request.getParameter("act");
+    	
+    	switch (act) {
+	    	case "list":
+	    		doList(request, response);
+	    		break;
+	    	case "writeform":
+	    		doWriteForm(request, response);
+	    		break;
+	    	case "write":
+	    		doWrite(request, response);
+	    		break;
+	    	case "detail":
+	    		doDetail(request, response);
+	    		break;
+	    	case "modifyform":
+	    		doModifyForm(request, response);
+	    		break;
+	    	case "modify":
+	    		doModify(request, response);
+	    		break;
+	    	case "remove":
+	    		doRemove(request, response);
+	    		break;
+	    	default:
+	    		break;
+    	}
+	}
+
+	private void doList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String sql = "SELECT * FROM videos";
+		int videoId = Integer.parseInt(request.getParameter("videoId"));
 		
 		try {
-			conn = util.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Video video = new Video();
-				video.setId(rs.getInt("id"));
-				video.setTitle(rs.getString("title"));
-				video.setFitPartName(rs.getString("fitPartName"));
-				video.setChannelName(rs.getString("channelName"));
-				video.setViewCnt(rs.getInt("viewCnt"));
-				video.setImg(rs.getString("img"));
-				
-				list.add(video);
-			}			
+			mainDao.updateViewCnt(videoId);
+			request.setAttribute("video", mainDao.selectOne(videoId));
+			request.setAttribute("reviewList", reviewDao.selectAll(videoId));
+			request.getRequestDispatcher("/video/list.jsp").forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			util.close(rs, pstmt, conn);
 		}
-		
-		return list;
 	}
 
-	@Override
-	public Video selectOne(int id) throws SQLException {		
-		String sql = "SELECT * FROM videos WHERE id=?";
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		Video video = new Video();
-		
-		try {
-			conn = util.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, id);
-			
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				video.setId(rs.getInt(1));
-				video.setTitle(rs.getString(2));
-				video.setFitPartName(rs.getString(3));
-				video.setYoutubeId(rs.getString(4));
-				video.setChannelName(rs.getString(5));
-				video.setViewCnt(rs.getInt(6));
-				video.setImg(rs.getString(7));
-			}
-		} finally {
-			util.close(rs, pstmt, conn);
-		}
-		
-		return video;
+	private void doWriteForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/review/writeform.jsp").forward(request, response);
 	}
 
-	@Override
-	public void updateViewCnt(int id) throws SQLException {
-
-		String sql = "UPDATE videos SET viewCnt = viewCnt + 1 WHERE id = ?";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-
+	private void doWrite(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		Review review = new Review();
+		int videoId = Integer.parseInt(request.getParameter("videoId"));
+		review.setTitle(request.getParameter("title"));
+		review.setContent(request.getParameter("content"));
+		review.setWriter(request.getParameter("writer"));
+		review.setVideoId(videoId);
+		
 		try {
-			conn = util.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, id);
-			pstmt.executeUpdate();
-		} finally {
-			util.close(pstmt, conn);
+			reviewDao.insertReview(review);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		
+		response.sendRedirect("main?act=list&videoId=" + videoId);
+	}
+
+	private void doDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			request.setAttribute("review", reviewDao.selectOne(id));
+			request.getRequestDispatcher("/review/detail.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void doModifyForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/review/modifyform.jsp").forward(request, response);
+	}
+
+	private void doModify(HttpServletRequest request, HttpServletResponse response) {
+		
+	}
+
+	private void doRemove(HttpServletRequest request, HttpServletResponse response) {
+		
 	}
 }
