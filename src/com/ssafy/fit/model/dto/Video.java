@@ -14,7 +14,6 @@ public class Video {
 	}
 	
 	public Video(String title, String fitPartName, String youtubeId, String channelName, int viewCnt) {
-		super();
 		this.title = title;
 		this.fitPartName = fitPartName;
 		this.youtubeId = youtubeId;
