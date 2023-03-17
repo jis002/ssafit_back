@@ -116,12 +116,15 @@ public class MainController extends HttpServlet {
 		
 	}
 
-	private void doRemove(HttpServletRequest request, HttpServletResponse response) {
-		int id = Integer.parseInt(request.getParameter("id"));
+	private void doRemove(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int reviewId = Integer.parseInt(request.getParameter("reviewId"));
+		int videoId = Integer.parseInt(request.getParameter("videoId"));
+		
 		try {
-			reviewDao.deleteReview(id);
+			reviewDao.deleteReview(reviewId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		response.sendRedirect("main?act=list&videoId=" + videoId);
 	}
 }

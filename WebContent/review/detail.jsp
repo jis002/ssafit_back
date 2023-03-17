@@ -16,7 +16,12 @@
 	<!-- 목록보기, 수정, 삭제 버튼이 들어갈 위치 -->
 		<a href="main?act=list&videoId=${review.videoId }"><button type="button">목록으로</button></a>
 		<a href="main?act=modifyform&reviewId=${review.id }"><button type="button">수정</button></a>
-		<a href="main?act=remove&reviewId=${review.id }"><button type="button">삭제</button></a>
+		<form method="POST" action="main">
+			<Input type="hidden" name="act" value="remove">
+			<Input type="hidden" name="reviewId" value="${review.id }">
+			<Input type="hidden" name="videoId" value="${review.videoId }">
+			<Input type="submit" value="삭제">
+		</form>
 	</div>
 	<hr>
 	<div id="box">
