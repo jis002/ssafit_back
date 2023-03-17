@@ -67,8 +67,4 @@ public class Video {
 		return "Video [title=" + title + ", fitPartName=" + fitPartName + ", youtubeId=" + youtubeId + ", channelName="
 				+ channelName + ", viewCnt=" + viewCnt + "]";
 	}
-
-	
-	
-	
 }
