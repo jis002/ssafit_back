@@ -8,7 +8,7 @@
 <title>리뷰 등록</title>
 </head>
 <body>
-	<%@ include file="/common/header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	
 	<h1>리뷰 등록</h1>
 	<hr>

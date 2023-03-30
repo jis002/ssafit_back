@@ -8,7 +8,7 @@
     <header id="sky">
         <nav class="navbar bg-body-tertiary" style="background-color: aliceblue">
             <div class="container-fluid">
-                <a class="navbar-brand" href="main.html">
+                <a class="navbar-brand" href="index.jsp">
                 <strong>SSAFIT</strong>
                 </a>
                 <ul class="nav justify-content-end">

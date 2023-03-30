@@ -7,7 +7,7 @@
 	<title>리뷰 상세</title>
 </head>
 <body>
-	<%@ include file="/common/header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	
 	<h1>운동 영상 리뷰</h1>
 	<hr>

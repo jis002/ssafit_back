@@ -7,6 +7,8 @@
 <title>SSAFIT</title>
 </head>
 <body>
+	<%@ include file="/common/header.jsp" %>
+	
 	<h1>SSAFIT</h1>
 	<hr>
 	
